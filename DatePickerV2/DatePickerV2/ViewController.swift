@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var lblText: UILabel!
     @IBOutlet weak var lblCurrentTime: UILabel!
     
     @IBOutlet weak var lblPickerTime: UILabel!
@@ -22,6 +23,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        lblText.text="Time Picker"
+        
         Timer.scheduledTimer(timeInterval: interval, target: self, selector: timeSelector, userInfo: nil, repeats: true)
     }
 
@@ -30,7 +33,10 @@ class ViewController: UIViewController {
         
         let formatter=DateFormatter()
         formatter.dateFormat="yyyy-MM-dd HH:mm EEE"
+        print("logging")
         lblPickerTime.text="선택시간: "+formatter.string(from:datePickerView.date)
+        print(formatter.string(from:datePickerView.date))
+        
     }
     
     @objc func updateTime(){
@@ -40,6 +46,7 @@ class ViewController: UIViewController {
         let date = NSDate()
         let formatter=DateFormatter()
         formatter.dateFormat="yyyy-MM-dd HH:mm EEE"
+        
         lblCurrentTime.text="현재시간: "+formatter.string(from:date as Date)
     
     }
